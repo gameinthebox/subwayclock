@@ -14,15 +14,15 @@ import (
 )
 
 // An example stop ID for testing purposes.
-const _courtSquareStopID = "719"
-const _7NorthDir = "(7) MAIN ST"
-const _7SouthDir = "(7) 34 - HUDSON"
+const _GClinWashStopID = "291"
+const _GQueensDir = "(7) MAIN ST"
+const _GChurchAveDir = "(7) 34 - HUDSON"
 
 const _updateFrequency = 1 * time.Minute
 
 func main() {
 	nycta, err := client.NewNYCTA(&client.Config{
-		APIKey: "",
+		APIKey: "https://api-endpoint.mta.info/Dataservice/mtagtfsfeeds/nyct%2Fgtfs-g",
 		FeedID: 51,
 	})
 
@@ -66,7 +66,7 @@ func main() {
 			log.Fatalf("err: " + err.Error())
 		}
 
-		img := render.SubwayClock(update, _courtSquareStopID, _7NorthDir, _7SouthDir)
+		img := render.SubwayClock(update, _GClinWashStopID, _GQueensDir, _GChurchAveDir)
 
 		if err := dev.Draw(img.Bounds(), img, image.ZP); err != nil {
 			log.Fatal(err)
